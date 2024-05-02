@@ -1,5 +1,5 @@
 use crate::merkle_tree::{MerkleTree, Value};
-use crate::poseidon_hasher::{Hasher, PoseidonHasher};
+use fusion_poseidon::{Hasher, PoseidonHasher};
 
 use ruint::aliases::U256;
 use serde::{Deserialize, Serialize};

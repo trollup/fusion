@@ -1,4 +1,4 @@
-use crate::poseidon_hasher::Hasher;
+use fusion_poseidon::Hasher;
 
 use bitmaps::Bitmap;
 
@@ -6,7 +6,7 @@ use core::marker::PhantomData;
 use serde::{Deserialize, Deserializer, Serialize, Serializer};
 
 use core::fmt;
-use serde::de::{self, Visitor};
+use serde::de::Visitor;
 
 extern crate alloc;
 use alloc::collections::BTreeMap;
@@ -286,7 +286,7 @@ impl Value for U256 {
 
 #[cfg(test)]
 mod test {
-    use crate::poseidon_hasher::PoseidonHasher;
+    use fusion_poseidon::PoseidonHasher;
 
     use super::*;
 

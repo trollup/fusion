@@ -28,8 +28,7 @@ async fn request_proof(
     post_state: State,
 //) -> anyhow::Result<fusion::TxProof, String> {
 ) -> anyhow::Result<(), String> {
-    //Prover::prove(&config, &tx, &pre_state, &post_state)
-    Prover::prove()
+    Ok(())
 }
 
 /*

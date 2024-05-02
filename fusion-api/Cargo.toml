@@ -5,9 +5,15 @@ edition = "2021"
 
 [dependencies]
 ruint = { version = "1.10.1", default-features = false }
-#ethers-core = { version = "2" }
-#poseidon-rs = "0.0.8"
-#serde = "1.0.152"
-#tarpc = { version = "0.31", features = ["full"] }
-fusion-types = { path = "../fusion-types" }
+
 serde = { version = "1.0", default-features = false, features = ["alloc", "derive", "rc"] }
+
+fusion-poseidon = { path = "../fusion-poseidon", default-features = false }
+fusion-types = { path = "../fusion-types", default-features = false }
+
+powdr-riscv-runtime = { path = "../../powdr/riscv-runtime", optional = true }
+
+[features]
+default = ["std"]
+std = ["fusion-poseidon/std", "fusion-types/std"]
+powdr = ["powdr-riscv-runtime", "fusion-poseidon/powdr"]

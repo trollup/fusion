@@ -17,6 +17,7 @@ tokio = { version = "1.25.0", features = ["macros", "sync"] }
 #fusion-l1 = { path = "../l1-verifier/out/bindings" }
 fusion-api = { path = "../fusion-api" }
 fusion-config = { path = "../fusion-config" }
+fusion-prover = { path = "../fusion-prover" }
 fusion-state= { path = "../fusion-state" }
 fusion-types = { path = "../fusion-types" }
 

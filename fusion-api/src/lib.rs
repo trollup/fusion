@@ -1,8 +1,7 @@
-#![no_std]
+#![cfg_attr(not(feature = "std"), no_std)]
 
 use fusion_types::*;
 use ruint::aliases::U256;
-//use poseidon_rs::*;
 use serde::{Deserialize, Serialize};
 
 extern crate alloc;
@@ -60,7 +59,7 @@ impl From<U256> for TxKind {
 
 pub fn hash_tx(tx: &Tx) -> U256 {
     U256::ZERO
-    /*
+        /*
     let sender_pk = PublicKey::from_babyjubjub_point(&tx.sender.to_babyjubjub_point());
     let to_pk = PublicKey::from_babyjubjub_point(&tx.to.to_babyjubjub_point());
     Poseidon::new()
