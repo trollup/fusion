@@ -10,10 +10,10 @@ use tarpc::{
 
 use tokio::sync::mpsc;
 
-use std::net::{IpAddr, SocketAddr};
+use std::net::IpAddr;
 
 #[derive(Clone)]
-struct FusionServer(SocketAddr, mpsc::Sender<SignedTx>);
+struct FusionServer((), mpsc::Sender<SignedTx>);
 
 #[tarpc::server]
 impl FusionRPC for FusionServer {
@@ -42,7 +42,8 @@ pub async fn run_server(sx: mpsc::Sender<SignedTx>, addr: String, port: u16) -> 
         // Limit channels to 1 per IP.
         .max_channels_per_key(1, |t| t.transport().peer_addr().unwrap().ip())
         .map(|channel| {
-            let server = FusionServer(channel.transport().peer_addr().unwrap(), sx.clone());
+            //let server = FusionServer(channel.transport().peer_addr().unwrap(), sx.clone());
+            let server = FusionServer((), sx.clone());
             channel.execute(server.serve())
         })
         // Max 10 channels.

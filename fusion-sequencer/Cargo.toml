@@ -12,7 +12,7 @@ futures = "0.3.26"
 log = "0.4.17"
 tarpc = { version = "0.31", features = ["full"] }
 tokio = { version = "1.25.0", features = ["macros", "sync", "rt-multi-thread"] }
-#fusion-l1 = { path = "../l1-verifier/out/bindings" }
+fusion-l1 = { path = "../l1-verifier/out/bindings" }
 fusion-api = { path = "../fusion-api" }
 fusion-config = { path = "../fusion-config" }
 fusion-prover = { path = "../fusion-prover" }
@@ -23,5 +23,5 @@ fusion-types = { path = "../fusion-types" }
 serde_cbor = { version = "0.11.2" }
 
 [dev-dependencies]
-#anvil = { git = "https://github.com/foundry-rs/foundry" }
+anvil = { git = "https://github.com/foundry-rs/foundry" }
 hex = "0.4.3"

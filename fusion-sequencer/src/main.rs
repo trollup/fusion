@@ -2,30 +2,9 @@ use tokio::sync::mpsc;
 
 use fusion_api::*;
 use fusion_config::Config;
-use fusion_types::*;
 
 use fusion_sequencer::sequencer::*;
 use fusion_sequencer::server::*;
-
-use fusion_state::{apply_tx, State};
-
-use ruint::aliases::U256;
-
-fn state_update_test() {
-    let pre_state = State::default();
-
-    let tx = Tx {
-        kind: TxKind::Transfer,
-        sender: PublicKey::from("0"),
-        to: PublicKey::from("0"),
-        nonce: U256::ZERO,
-        value: U256::from_limbs([1, 0, 0, 0]),
-    };
-
-    let post_state = apply_tx(pre_state.clone(), &tx);
-
-    let _ = fusion_prover::prove(&tx, &pre_state, &post_state);
-}
 
 #[tokio::main]
 async fn main() -> anyhow::Result<()> {

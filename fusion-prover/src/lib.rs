@@ -18,7 +18,8 @@ pub fn prove(tx: &fusion_api::Tx, pre_state: &State, post_state: &State) -> Resu
     let output_path = Path::new("output");
 
     let (asm_file_path, asm_contents) = compile_rust::<GoldilocksField>(
-        "./fusion-powdr-verifier",
+        //"./fusion-powdr-verifier",
+        "/home/leo/devel/fusion/fusion-powdr-verifier",
         // TODO change "output"
         output_path,
         true,
