@@ -4,10 +4,12 @@ resolver = "2"
 members = [
 	"fusion-api",
 	"fusion-config",
+	"fusion-poseidon",
 	"fusion-prover",
+	"fusion-rpc",
 	"fusion-state",
 	"fusion-sequencer",
-	"fusion-types", "fusion-poseidon",
+	"fusion-types",
 ]
 
 default-members = ["fusion-sequencer"]

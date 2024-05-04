@@ -26,12 +26,11 @@ async fn request_proof(
     tx: SignedTx,
     pre_state: State,
     post_state: State,
-//) -> anyhow::Result<fusion::TxProof, String> {
+    //) -> anyhow::Result<fusion::TxProof, String> {
 ) -> anyhow::Result<(), String> {
     Ok(())
 }
 
-/*
 pub async fn run_sequencer(
     config: &Config,
     mut rx: mpsc::Receiver<SignedTx>,
@@ -40,11 +39,11 @@ pub async fn run_sequencer(
     let mempool = init_mempool(db_path);
 
     let mut state = State::default();
-    let l1_contract = init_l1(config).await.unwrap();
+    //let l1_contract = init_l1(config).await.unwrap();
 
     while let Some(tx) = rx.recv().await {
-        let current_root = l1_contract.root().call().await.unwrap();
-        println!("Current root is {current_root}");
+        //let current_root = l1_contract.root().call().await.unwrap();
+        //println!("Current root is {current_root}");
 
         {
             let mut unlocked_mempool = mempool.lock().unwrap();
@@ -91,12 +90,14 @@ pub async fn run_sequencer(
                 Err(e) => println!("Could not generate proof: {e}"),
                 Ok(proof) => {
                     println!("Submiting block");
+                    /*
                     l1_contract
                         .submit_block([proof])
                         .gas(1000000)
                         .send()
                         .await
                         .unwrap();
+                    */
                     println!("Block sent!");
                 }
             };
@@ -105,7 +106,6 @@ pub async fn run_sequencer(
 
     Ok(())
 }
-*/
 
 fn validate_tx(state: &State, tx: &SignedTx) -> anyhow::Result<()> {
     verify_tx_signature(tx)?;

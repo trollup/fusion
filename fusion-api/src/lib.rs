@@ -68,18 +68,11 @@ pub fn hash_tx(tx: &Tx) -> U256 {
     fusion_poseidon::poseidon_sponge(&[tx.kind.to_u256(), sender_addr, to_addr, tx.nonce, tx.value])
 }
 
-//#[derive(Clone, Debug, Serialize, Deserialize)]
+#[derive(Clone, Debug, Serialize, Deserialize)]
 pub struct SignedTx {
     pub tx: Tx,
     pub signature: String,
 }
-
-/*
-#[tarpc::service]
-pub trait FusionRPC {
-    async fn submit_transaction(tx: SignedTx) -> Result<(), String>;
-}
-*/
 
 #[cfg(test)]
 mod test {

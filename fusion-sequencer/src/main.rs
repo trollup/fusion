@@ -1,19 +1,15 @@
 use tokio::sync::mpsc;
 
 use fusion_api::*;
-use fusion_types::*;
 use fusion_config::Config;
+use fusion_types::*;
 
 use fusion_sequencer::sequencer::*;
 use fusion_sequencer::server::*;
 
-use fusion_state::{State, apply_tx};
+use fusion_state::{apply_tx, State};
 
 use ruint::aliases::U256;
-
-fn main() {
-    state_update_test();
-}
 
 fn state_update_test() {
     let pre_state = State::default();
@@ -31,7 +27,6 @@ fn state_update_test() {
     let _ = fusion_prover::prove(&tx, &pre_state, &post_state);
 }
 
-/*
 #[tokio::main]
 async fn main() -> anyhow::Result<()> {
     let config = Config::from_file("../fusion.toml".to_string());
@@ -46,4 +41,3 @@ async fn main() -> anyhow::Result<()> {
 
     run_sequencer(&config, rx).await
 }
-*/
