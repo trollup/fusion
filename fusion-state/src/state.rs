@@ -1,5 +1,5 @@
 use crate::merkle_tree::{MerkleTree, Value};
-use fusion_poseidon::{Hasher, PoseidonHasher};
+use fusion_poseidon::PoseidonHasher;
 
 use ruint::aliases::U256;
 use serde::{Deserialize, Serialize};
@@ -18,14 +18,6 @@ impl Account {
     pub fn new(id: U256, balance: U256, nonce: U256) -> Self {
         Account { id, balance, nonce }
     }
-}
-
-fn poseidon(args: &[U256]) -> U256 {
-    let mut hasher = PoseidonHasher::default();
-    for a in args {
-        hasher.write_h256(a);
-    }
-    hasher.finish()
 }
 
 #[derive(Serialize, Deserialize, Default, Clone)]
@@ -60,7 +52,7 @@ impl Value for Account {
             return U256::ZERO;
         }
 
-        poseidon(&[self.balance, self.nonce])
+        fusion_poseidon::poseidon_sponge(&[self.balance, self.nonce])
     }
 
     fn zero() -> Self {

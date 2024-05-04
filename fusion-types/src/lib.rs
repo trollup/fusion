@@ -18,7 +18,7 @@ impl From<String> for PrivateKey {
 
 impl From<&str> for PrivateKey {
     fn from(key: &str) -> Self {
-        U256::from_str_radix(&key, 10).unwrap().into()
+        U256::from_str_radix(key, 10).unwrap().into()
     }
 }
 
@@ -39,7 +39,7 @@ impl From<String> for PublicKey {
 
 impl From<&str> for PublicKey {
     fn from(key: &str) -> Self {
-        U256::from_str_radix(&key, 10).unwrap().into()
+        U256::from_str_radix(key, 10).unwrap().into()
     }
 }
 

@@ -23,13 +23,15 @@ pub enum TxKind {
     Withdraw,
 }
 
-/*
-impl ToU256 for TxKind {
-    fn to_u256(&self) -> U256 {
+const ONE: U256 = U256::from_limbs([1, 0, 0, 0]);
+const TWO: U256 = U256::from_limbs([2, 0, 0, 0]);
+
+impl TxKind {
+    pub fn to_u256(&self) -> U256 {
         match self {
-            TxKind::Transfer => 0.into(),
-            TxKind::Deposit => 1.into(),
-            TxKind::Withdraw => 2.into(),
+            TxKind::Transfer => U256::ZERO,
+            TxKind::Deposit => ONE,
+            TxKind::Withdraw => TWO,
         }
     }
 }
@@ -47,35 +49,23 @@ impl From<u8> for TxKind {
 
 impl From<U256> for TxKind {
     fn from(k: U256) -> Self {
-        match k.as_u32() {
-            0 => TxKind::Transfer,
-            1 => TxKind::Deposit,
-            2 => TxKind::Withdraw,
+        match k {
+            U256::ZERO => TxKind::Transfer,
+            ONE => TxKind::Deposit,
+            TWO => TxKind::Withdraw,
             _ => panic!(),
         }
     }
 }
-*/
 
 pub fn hash_tx(tx: &Tx) -> U256 {
-    U256::ZERO
-        /*
-    let sender_pk = PublicKey::from_babyjubjub_point(&tx.sender.to_babyjubjub_point());
-    let to_pk = PublicKey::from_babyjubjub_point(&tx.to.to_babyjubjub_point());
-    Poseidon::new()
-        .hash(
-            [
-                tx.kind.to_u256().to_fr(),
-                sender_pk.to_fr(),
-                to_pk.to_fr(),
-                tx.nonce.to_fr(),
-                tx.value.to_fr(),
-            ]
-            .to_vec(),
-        )
-        .unwrap()
-        .to_u256()
-        */
+    let sender_pk: PublicKey = tx.sender.clone();
+    let sender_addr = sender_pk.address();
+
+    let to_pk: PublicKey = tx.to.clone();
+    let to_addr = to_pk.address();
+
+    fusion_poseidon::poseidon_sponge(&[tx.kind.to_u256(), sender_addr, to_addr, tx.nonce, tx.value])
 }
 
 //#[derive(Clone, Debug, Serialize, Deserialize)]

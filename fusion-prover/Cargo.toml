@@ -1,0 +1,13 @@
+[package]
+name = "fusion-prover"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+fusion-api = { path = "../fusion-api" }
+fusion-state = { path = "../fusion-state" }
+
+powdr = { path = "../../powdr/powdr" }
+
+log = "0.4.17"
+env_logger = "0.10.2"

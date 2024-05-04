@@ -1,16 +1,13 @@
 #![no_std]
 
-use powdr_riscv_runtime::{input::get_data_serde, print};
+use powdr_riscv_runtime::input::get_data_serde;
 
 use ruint::aliases::U256;
 
 extern crate alloc;
-use alloc::string::String;
-use alloc::string::ToString;
-use alloc::vec::Vec;
 
 use fusion_api::Tx;
-use fusion_state::{apply_tx, State, Account};
+use fusion_state::{apply_tx, State};
 
 #[no_mangle]
 fn main() {

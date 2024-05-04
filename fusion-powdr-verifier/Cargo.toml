@@ -8,7 +8,7 @@ powdr-riscv-runtime = { path = "../../powdr/riscv-runtime" }
 
 ruint = { version = "1.10.1", default-features = false, features = ["serde"] }
 
-fusion-api = { path = "../fusion-api" }
+fusion-api = { path = "../fusion-api", default-features = false, features = ["powdr"]}
 fusion-state= { path = "../fusion-state", default-features = false, features = ["powdr"] }
 
 serde = { version = "1.0", default-features = false, features = ["alloc", "derive", "rc"] }

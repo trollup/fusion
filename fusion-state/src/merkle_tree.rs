@@ -263,9 +263,7 @@ pub trait ToBitmap {
 
 impl ToBitmap for U256 {
     fn to_bitmap(&self) -> Bitmap<N_LEAVES> {
-        TryFrom::try_from(&self.as_le_slice()[..]).unwrap()
-        //TryFrom::try_from(&self.to_le_bytes()[..]).unwrap()
-        //TryFrom::try_from(&self.to_be_bytes()[..]).unwrap()
+        TryFrom::try_from(self.as_le_slice()).unwrap()
     }
 }
 
