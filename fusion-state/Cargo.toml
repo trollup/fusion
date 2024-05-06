@@ -1,0 +1,20 @@
+[package]
+name = "fusion-state"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+bitmaps = { version = "3.2.0", default-features = false }
+ruint = { version = "1.10.1", default-features = false, features = ["serde"] }
+serde = { version = "1.0", default-features = false, features = ["alloc", "derive", "rc"] }
+
+fusion-api= { path = "../fusion-api", default-features = false }
+fusion-poseidon = { path = "../fusion-poseidon", default-features = false }
+fusion-types = { path = "../fusion-types" }
+
+powdr-riscv-runtime = { path = "../../powdr/riscv-runtime", optional = true }
+
+[features]
+default = ["std"]
+std = ["fusion-api/std", "fusion-poseidon/std"]
+powdr = ["powdr-riscv-runtime", "fusion-api/powdr", "fusion-poseidon/powdr"]

@@ -1,0 +1,8 @@
+[package]
+name = "fusion-rpc"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+fusion-api = { path = "../fusion-api" }
+tarpc = { version = "0.31", features = ["full"] }

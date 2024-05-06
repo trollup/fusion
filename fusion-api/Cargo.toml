@@ -3,11 +3,17 @@ name = "fusion-api"
 version = "0.1.0"
 edition = "2021"
 
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
-
 [dependencies]
-ethers-core = { version = "2" }
-poseidon-rs = "0.0.8"
-serde = "1.0.152"
-tarpc = { version = "0.31", features = ["full"] }
+ruint = { version = "1.10.1", default-features = false }
+
+serde = { version = "1.0", default-features = false, features = ["alloc", "derive", "rc"] }
+
+fusion-poseidon = { path = "../fusion-poseidon", default-features = false }
 fusion-types = { path = "../fusion-types" }
+
+powdr-riscv-runtime = { path = "../../powdr/riscv-runtime", optional = true }
+
+[features]
+default = ["std"]
+std = ["fusion-poseidon/std"]
+powdr = ["powdr-riscv-runtime", "fusion-poseidon/powdr"]

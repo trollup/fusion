@@ -1,9 +1,17 @@
 [workspace]
+resolver = "2"
+
 members = [
 	"fusion-api",
 	"fusion-config",
+	"fusion-poseidon",
 	"fusion-prover",
+	"fusion-rpc",
+	"fusion-state",
 	"fusion-sequencer",
 	"fusion-types",
-	"fusion-wallet"
 ]
+
+default-members = ["fusion-sequencer"]
+
+exclude = [ "fusion-powdr-verifier" ]
