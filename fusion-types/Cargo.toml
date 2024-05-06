@@ -6,7 +6,3 @@ edition = "2021"
 [dependencies]
 ruint = { version = "1.10.1", default-features = false, features = ["serde"] }
 serde = { version = "1.0", default-features = false, features = ["alloc", "derive", "rc"] }
-
-[features]
-default = ["std"]
-std = []

@@ -1,4 +1,4 @@
-#![cfg_attr(not(feature = "std"), no_std)]
+#![no_std]
 
 use fusion_types::*;
 use ruint::aliases::U256;
